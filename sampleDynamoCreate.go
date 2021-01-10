@@ -5,5 +5,5 @@ import (
 )
 
 func main() {
-	dynamoServices.CreateUser("best boi")
+	dynamoServices.CreateUser(1, "best boi")
 }

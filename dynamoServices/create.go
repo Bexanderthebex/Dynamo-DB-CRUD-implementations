@@ -9,12 +9,11 @@ import (
 	"sampleDynamo/models"
 )
 
-func CreateUser(name string) {
+func CreateUser(userId int64, name string) {
 	dynamoUser := models.User{
-		Name: name,
+		User_id: userId,
+		Name:    name,
 	}
-
-	dynamoUser.SetUserId(1)
 
 	session := NewAWSSession()
 
