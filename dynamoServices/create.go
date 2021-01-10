@@ -23,6 +23,7 @@ func CreateUser(userId int64, name string) {
 
 	if mashalMapErr != nil {
 		fmt.Println(mashalMapErr.Error())
+		return
 	}
 
 	dynamoDBUserRecord := &dynamodb.PutItemInput{
@@ -33,5 +34,6 @@ func CreateUser(userId int64, name string) {
 
 	if err != nil {
 		fmt.Println(err.Error())
+		return
 	}
 }
