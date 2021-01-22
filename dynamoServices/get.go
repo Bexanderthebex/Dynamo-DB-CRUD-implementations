@@ -5,12 +5,13 @@ import (
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/service/dynamodb"
 	"github.com/aws/aws-sdk-go/service/dynamodb/dynamodbattribute"
+	"os"
 	"strconv"
 
 	"sampleDynamo/models"
 )
 
-func GetUser(userId int64) {
+func GetUser(userId int64) models.User {
 	session := NewAWSSession()
 
 	dynamoDBClient := dynamodb.New(session)
@@ -28,12 +29,12 @@ func GetUser(userId int64) {
 
 	if error != nil {
 		fmt.Println(error.Error())
-		return
+		os.Exit(1)
 	}
 
 	if result.Item == nil {
 		fmt.Printf("Could not find User with Id %d \n", userId)
-		return
+		os.Exit(1)
 	}
 
 	user := models.User{}
@@ -45,4 +46,6 @@ func GetUser(userId int64) {
 	}
 
 	fmt.Println(user)
+
+	return user
 }

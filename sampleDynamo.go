@@ -1,6 +1,7 @@
 package main
 
 import "sampleDynamo/dynamoServices"
+import "sampleDynamo/models"
 
 func main() {
 	dynamoServices.CreateUser(1, "best boi")
@@ -10,4 +11,6 @@ func main() {
 	batchOfUsersToCreate := []string{"etoro", "robinhood", "TD ameritrade", "JPM", "Modal"}
 
 	dynamoServices.CreateMultipleUsers(&batchOfUsersToCreate)
+
+	dynamoServices.UpdateUser(1, &models.UserBalance{Balance: 11})
 }
